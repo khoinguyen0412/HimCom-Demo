@@ -21,9 +21,18 @@ Route::get('/', function () {
 
 
 Route::group(['prefix' => 'admin'],function(){
-    Route::post('/login', [AdminController::class,'login']);
+    Route::get('/login',[AdminController::class,'login']);
+    Route::post('/post-login', [AdminController::class,'postLogin']);
+    Route::get('/register',[AdminController::class,'register']);
+    Route::post('/register',[AdminController::class,'postRegister']);
+    Route::group(['middleware' => 'auth.admin'] ,function(){
+        Route::get('/dashboard',[AdminController::class,'dashboard']);
+    });
 });
 
 Route::group(['prefix' => 'user'],function(){
-    Route::post('/login', [UserController::class,'login']);
+    Route::get('/login', [UserController::class,'login']);
+    Route::post('/post-login', [UserController::class,'postLogin'])->name('user-login.post');
+    Route::get('/register',[UserController::class,'register']);
+    Route::post('/register',[UserController::class,'postRegister']);
 });
