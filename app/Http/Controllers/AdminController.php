@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -16,11 +16,11 @@ class AdminController extends Controller
     }
 
     public function register(Request $request){
-
+        return view('admin.register');
     }
 
     public function postRegister(Request $request){
-
+    
     }
 
     public function dashboard(Request $request){
