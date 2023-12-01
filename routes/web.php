@@ -21,12 +21,13 @@ Route::get('/', function () {
 
 
 Route::group(['prefix' => 'admin'],function(){
-    Route::get('/login',[AdminController::class,'login']);
-    Route::post('/post-login', [AdminController::class,'postLogin']);
-    Route::get('/register',[AdminController::class,'register']);
-    Route::post('/register',[AdminController::class,'postRegister']);
-    Route::group(['middleware' => 'auth.admin'] ,function(){
+    Route::get('/login',[AdminController::class,'login'])->name('admin-login');
+    Route::post('/post-login', [AdminController::class,'postLogin'])->name('admin-login.post');
+    // Route::get('/register',[AdminController::class,'register']);
+    // Route::post('/register',[AdminController::class,'postRegister']);
+    Route::group(['middleware' => 'admin'] ,function(){
         Route::get('/dashboard',[AdminController::class,'dashboard']);
+        Route::post('/logout',[AdminController::class,'logout']);
     });
 });
 
@@ -34,5 +35,5 @@ Route::group(['prefix' => 'user'],function(){
     Route::get('/login', [UserController::class,'login']);
     Route::post('/post-login', [UserController::class,'postLogin'])->name('user-login.post');
     Route::get('/register',[UserController::class,'register']);
-    Route::post('/register',[UserController::class,'postRegister']);
+    Route::post('/register',[UserController::class,'postRegister'])->name('user-register.post');
 });

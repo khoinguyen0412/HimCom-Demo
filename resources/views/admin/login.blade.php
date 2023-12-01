@@ -1,6 +1,16 @@
 @extends('app')
 
 @section('content')
+@if(session('message'))
+    <div class="alert alert-danger">
+        {{ session('message') }}
+    </div>
+@endif
+@if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
 <main class="login-form" style="margin-top:100px">
   <div class="container">
       <div class="row justify-content-center">
@@ -9,7 +19,7 @@
                   <div class="card-header">Admin Login</div>
                   <div class="card-body">
   
-                    <form action="{{ route('user-login.post') }}" method="POST">
+                    <form action="{{ route('admin-login.post') }}" method="POST">
                           @csrf
                           <div class="form-group row">
                               <label for="email_address" class="col-md-4 col-form-label text-md-right">E-Mail Address</label>
