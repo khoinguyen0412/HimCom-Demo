@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Bank extends Model
+class BankBranch extends Model
 {
     use HasFactory;
-    protected $table = 'banks';
+    protected $table = 'bank_branches';
     public $timestamps = false;
 
-    public function bank_branches(){
-        return $this->hasMany(BankBranches::class);
+    public function bank_id(){
+        return $this->belongsTo(Bank::class);
     }
 }

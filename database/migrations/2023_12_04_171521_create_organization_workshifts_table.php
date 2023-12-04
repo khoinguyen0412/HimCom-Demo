@@ -11,11 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('banks', function (Blueprint $table) {
+        Schema::create('organization_workshifts', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('organization_id');
             $table->string('name');
+            $table->timestamp('start_time')->nullable()->default(null);
+            $table->timestamp('end_time')->nullable()->default(null);
             $table->timestamps();
 
+            $table->foreign('organization_id')->references('id')->on('organizations');
         });
     }
 
@@ -24,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('banks');
+        Schema::dropIfExists('organization_workshifts');
     }
 };
